@@ -21,9 +21,9 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movies = Movie.find(params[:id])
+    @movie = Movie.find(params[:id])
   end
-  
+
   private
 
   def movie_params
