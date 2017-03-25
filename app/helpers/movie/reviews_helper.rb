@@ -1,0 +1,2 @@
+module Movie::ReviewsHelper
+end
