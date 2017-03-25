@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     @movie.user = current_user
     if @movie.save
+      current_user.join!(@movie)
       redirect_to movies_path,notice:"Movie Added!"
     else
       render :new
@@ -42,6 +43,32 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @reviews = @movie.reviews.recent.paginate(:page => params[:page], :per_page =>5)
   end
+
+    def join
+     @movie = Movie.find(params[:id])
+
+      if !current_user.is_member_of?(@movie)
+        current_user.join!(@movie)
+        flash[:notice] = "Favorite it success!"
+      else
+        flash[:warning] = "You have already favorited it!"
+      end
+
+      redirect_to movie_path(@movie)
+    end
+
+    def quit
+      @movie = Movie.find(params[:id])
+
+      if current_user.is_member_of?(@movie)
+        current_user.quit!(@movie)
+        flash[:alert] = "You have already removed it form favorite list！"
+      else
+        flash[:warning] = "You didn't favorite it!"
+      end
+
+      redirect_to movie_path(@movie)
+    end
 
   private
 
