@@ -10,8 +10,15 @@ class User < ApplicationRecord
   has_many :movie_relationships
   has_many :reviews_movies,:through => :movie_relationships, :source => :movie
 
-  def is_member_of?(group)
-    reviews_movies.include?(group)
+  def is_member_of?(movie)
+    reviews_movies.include?(movie)
   end
 
+  def join!(movie)
+    reviews_movies << movie
+  end
+
+  def quit!(movie)
+    reviews_movies.delete(movie)
+  end
 end
