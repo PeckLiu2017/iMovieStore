@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_many :movie_relationships
   has_many :reviews_movies,:through => :movie_relationships, :source => :movie
 
+  def is_member_of?(group)
+    reviews_movies.include?(group)
+  end
+
 end
