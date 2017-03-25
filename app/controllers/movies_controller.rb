@@ -40,7 +40,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @reviews = @movie.reviews
+    @reviews = @movie.reviews.recent
   end
 
   private
