@@ -1,18 +1,28 @@
+<p><h1>Select Movie</h1>
 <div class="col-md-12">
-  <div class="movie">
-    <%= link_to("New movie", new_movie_path, class: "btn btn-primary pull-right") %>
-  </div>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <td>#</td>
-        <td>Movie</td>
-        <td>Description</td>
-        <td>Creator</td>
-      </tr>
-    </thead>
-    <tbody>
-    <%= render :partial => "movie_item", :collection =>@movies, :as =>:movie%>
-        </tbody>
-  </table>
-</div>
+    <%= link_to("New movie", new_movie_path, class: "btn btn-primary ") %>
+  <p>
+  <hr>
+
+      <div class="img-backgroud">
+          <div class="img">
+            <a target="_blank" href=movie_path(movie)>
+            <%= image_tag(root_url + "images/Roman Holiday.jpeg", :alt => "Roman Holiday")%>
+            </a>
+            <div class="desc">Click the post to review it</div>
+          </div>
+          <div class="img">
+            <a target="_blank" href="/i/tulip_flaming_club.jpg">
+              <%= image_tag(root_url + "images/Water Bridge.jpg", :alt => "Water Bridge")%>
+          </a>
+            <div class="desc">Click the post to review it</div>
+            </div>
+          <div class="img">
+              <a target="_blank" href="/i/tulip_flaming_club.jpg">
+                <%= image_tag(root_url + "images/KungFu Panda film.jpg", :alt => "KungFu Panda")%>
+             </a>
+              <div class="desc">Click the post to review it</div>
+          </div>
+      </div>
+
+    <!-- <%= render :partial => "movie_item", :collection =>@movies, :as =>:movie%> -->
