@@ -5,10 +5,15 @@ h1{
 img{
   height:352px ;
   width:300px ;
+  clear:both;
+}
+
+.row{
+  margin: auto 15px;
 }
 
 .img-backgroud {
-
+    background-color: white;
     height:500px;
 }
 

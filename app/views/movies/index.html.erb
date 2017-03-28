@@ -4,25 +4,17 @@
   <p>
   <hr>
 
-      <div class="img-backgroud">
-          <div class="img">
-            <a target="_blank" href=movie_path(movie)>
-            <%= image_tag(root_url + "images/Roman Holiday.jpeg", :alt => "Roman Holiday")%>
-            </a>
-            <div class="desc">Click the post to review it</div>
-          </div>
-          <div class="img">
-            <a target="_blank" href="/i/tulip_flaming_club.jpg">
-              <%= image_tag(root_url + "images/Water Bridge.jpg", :alt => "Water Bridge")%>
-          </a>
-            <div class="desc">Click the post to review it</div>
-            </div>
-          <div class="img">
-              <a target="_blank" href="/i/tulip_flaming_club.jpg">
-                <%= image_tag(root_url + "images/KungFu Panda film.jpg", :alt => "KungFu Panda")%>
-             </a>
-              <div class="desc">Click the post to review it</div>
-          </div>
+    <div class="row">
+      <% @movies.each do |movie|%>
+      <div class="img">
+        <%= link_to movie_path(movie) do %>
+        <% if movie.title.present? %>
+        <%= image_tag(root_url + "images/"+movie.title+".jpg", :alt => movie.title)%>
+        <% else %>
+        <%= image_tag(root_url + "images/No-image-available.jpg", :alt => "No-image-available")%>
+        <% end %>
+      <% end %>
       </div>
-
-    <!-- <%= render :partial => "movie_item", :collection =>@movies, :as =>:movie%> -->
+        <% end %>
+      </div>
+      

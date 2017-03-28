@@ -2,7 +2,7 @@
   <span class="pull-right">
   <% if current_user && current_user.is_member_of?(@movie) %>
         <%= link_to("Remove it form favorite", quit_movie_path(@movie), method: :post, class: "btn btn-default") %>
-<label class="label label-success"> Favorited </label>
+<label class="label label-success"> Already Favorited </label>
 <% else %>
   <%= link_to("Favorite it", join_movie_path(@movie), method: :post, class: "btn btn-default") %>
   <label class="label label-warning"> Favorite? </label>
