@@ -1,19 +1,21 @@
-<p><h1>Select Movie</h1>
-<div class="col-md-12">
-    <%= link_to("New movie", new_movie_path, class: "btn btn-primary ") %>
-  <p>
-  <hr>
+<p><h1>Select Movie</h1> <div class="col-md-12"> <%= link_to("New movie", new_movie_path, class: "btn btn-primary ") %> </p> <hr>
 
-    <div class="row">
-      <% @movies.each do |movie|%>
-      <div class="img">
-        <%= link_to movie_path(movie) do %>
-        <% if movie.title.present? %>
-        <%= image_tag(root_url + "images/"+movie.title+".jpg", :alt => movie.title)%>
-        <% else %>
-        <%= image_tag(root_url + "images/No-image-available.jpg", :alt => "No-image-available")%>
-        <% end %>
+<div class="row">
+  <% @movies.each do |movie|%>
+  <div class="img">
+    <%= link_to movie_path(movie) do %>
+    <% if movie.image.present? %>
+    <%= image_tag(movie.image.url, :alt => movie.title)%>
+    <% else %>
+    <%= image_tag(root_url + "images/No-image-available.jpg", :alt => "No-image-available")%>
+    <% end %>
+    <div style="margin-top:10px;margin-left:20px;">
+      <% if current_user && current_user == movie.user %>
+      <%= link_to("Delete this movie", movie_path(movie),    class: "btn btn-sm btn-default",
+                    method: :delete, data: { confirm: "Are you sure?" } )%>
       <% end %>
-      </div>
-        <% end %>
-      </div>
+    </div>
+  <% end %>
+  </div>
+    <% end %>
+  </div>
