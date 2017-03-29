@@ -1,44 +1,74 @@
-<div class="col-md-12">
-  <span class="pull-right">
-  <% if current_user && current_user.is_member_of?(@movie) %>
-        <%= link_to("Remove it form favorite", quit_movie_path(@movie), method: :post, class: "btn btn-default") %>
-<label class="label label-success"> Already Favorited </label>
+<div class="row ">
+<h1 class="text-center"><%= @movie.title%></h1>
+<span class="pull-right">
+<% if current_user && current_user.is_member_of?(@movie)%>
+<label class="label label-success">Already Favorited</label>
+<%= link_to  quit_movie_path(@movie), method: :post, class: "btn btn-default", style: "color: red;" do %>
+<i class="fa fa-heart" aria-hidden="true"></i>
+<% end %>
 <% else %>
-  <%= link_to("Favorite it", join_movie_path(@movie), method: :post, class: "btn btn-default") %>
-  <label class="label label-warning"> Favorite? </label>
+<label class="label label-warning">Favorite it?</label>
+<%= link_to  join_movie_path(@movie), method: :post, class: "btn btn-default" do %>
+<i class="fa fa-heart-o" aria-hidden="true"></i>
+<% end %>
 <% end %>
 </span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <% if @movie.image.present? %>
+        <%= image_tag(@movie.image.url, :alt => @movie.title)%>
+        <% else %>
+        <%= image_tag(root_url + "images/No-image-available.jpg", :alt => "No-image-available")%>
+        <% end %>
+    </div>
+    <div class="col-md-6">
+      <div class="movie-description">
+        <p style="margin-top:30px;">Directed by:<%= @movie.director%></p>
+          <p>Starring:<%= @movie.actor%></p>
+          <p>Release date:<%= @movie.release_date%> </p>
+          <p>Running time:<%= @movie.running_time%> </p>
+          <p>Type:<%= @movie.movie_type%> </p>
+          <p>Country:<%= @movie.country%> </p>
+          <p>Language:<%= @movie.language%> </p>
+          <p>Description： <%= simple_format(@movie.description)%></p>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
   <div class="movie">
     <% if current_user && current_user.is_member_of?(@movie) %>
-    <%= link_to("Write a Review", new_movie_review_path(@movie), class: "btn btn-default pull-right")%>
+    <%= link_to("Write a Review", new_movie_review_path(@movie), class: "btn btn-default pull-left")%>
     <% end %>
     <% if current_user && current_user == @movie.user %>
     <%= link_to("Edit", edit_movie_path(@movie), class: "btn btn-primary pull-right")%>
     <% end %>
   </div>
-  <h2><%= @movie.title %></h2>
-  <p><%= @movie.description %></p>
+  <br>
 
   <table class="table">
-    <thead>
-     <tr>
-        <th>Review Content</th>
-        <th>Creator</th>
-        <th>Release Time</th>
+  <thead>
+   <tr>
+      <th>Review Content</th>
+      <th>Creator</th>
+      <th>Release Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= simple_format(review.content) %></td>
+        <td><%= review.user.email %></td>
+        <td><%= review.created_at %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @reviews.each do |review| %>
-        <tr>
-          <td><%= simple_format(review.content) %></td>
-          <td><%= review.user.email %></td>
-          <td><%= review.created_at %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <div class="text-center">
-    <%= will_paginate@reviews%>
-  </div>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<div class="text-center">
+  <%= will_paginate@reviews%>
+</div>
 </div>
