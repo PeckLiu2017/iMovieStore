@@ -9,7 +9,7 @@ img{
 }
 
 .row{
-  margin: auto 15px;
+  margin: auto 15px 15px 15px;
 }
 
 .img-backgroud {
@@ -28,12 +28,13 @@ div.img
   text-align:center;
   }
 
-div.img img{
-    display:inline;
-    margin:20px;
-    border:1px solid #bebebe;
-}
+.col-md-6 {
+      width: 40%;
+  }
 
-div.desc{
-  text-align: center;
+.table {
+      width: 100%;
+      max-width: 100%;
+      margin-top: 20px;
+      margin-bottom: 20px;
 }
