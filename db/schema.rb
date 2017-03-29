@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328014723) do
+ActiveRecord::Schema.define(version: 20170329094553) do
 
   create_table "movie_relationships", force: :cascade do |t|
     t.integer  "movie_id"
@@ -22,10 +22,17 @@ ActiveRecord::Schema.define(version: 20170328014723) do
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
     t.string   "image"
+    t.string   "running_time"
+    t.string   "director"
+    t.string   "actor"
+    t.string   "country"
+    t.string   "movie_type"
+    t.string   "language"
+    t.date     "release_date"
   end
 
   create_table "reviews", force: :cascade do |t|

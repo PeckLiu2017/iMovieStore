@@ -1,7 +1,22 @@
 <%= simple_form_for @movie do |f| %>
   <div class="form-movie">
     <%= f.input :title, input_html: { class: "form-control"} %>
+    <%= f.input :director%>
+    <%= f.input :actor%>
+    <%= f.input :country, collection:["China","American","Europe","others"] %>
+    <%= f.input :movie_type%>
+    <%= f.input :language, collection: ["Chinese","English","others"]%>
+    <%= f.input :running_time%>
     <%= f.input :description, input_html: { class: "form-control"} %>
+    <div class="showtime">
+      <%= f.input :showtime, :as => :string%>
+    </div>
+    <%= form_tag 'MoviePost', :multipart => true do%>
+    <%= f.input :image, as: :file%>
+    <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submiting..." } %>
+    <% end %>
   </div>
-  <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submiting..." } %>
 <% end %>
+<script>
+    $(".showtime").datepicker({format: "yyyy/mm/dd"});
+</script>
