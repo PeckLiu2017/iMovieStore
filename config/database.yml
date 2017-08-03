@@ -30,4 +30,4 @@ production:
   database: iMovieStore
   host: 47.92.151.48
   username: root
-  password: tipmysql1！
+  password: tipmysql1!
