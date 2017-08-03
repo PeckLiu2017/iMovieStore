@@ -28,6 +28,6 @@ production:
   adapter: mysql2
   encoding: utf8mb4
   database: iMovieStore
-  host: localhost
+  host: 47.92.151.48
   username: root
   password: tipmysql1！
