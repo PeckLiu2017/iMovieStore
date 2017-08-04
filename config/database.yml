@@ -20,6 +20,14 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+<<<<<<< HEAD
 production:
   <<: *default
   database: db/production.sqlite3
+=======
+ production:
+   <<: *default
+   database: db/production.sqlite3
+
+
+>>>>>>> cc7e4b831168299e4d32d621b07671a1e71b6326
