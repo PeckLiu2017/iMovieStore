@@ -20,14 +20,6 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-# production:
-#   <<: *default
-#   database: db/production.sqlite3
-
 production:
-  adapter: mysql2
-  encoding: utf8mb4
-  database: iMovieStore
-  host: 47.92.151.48
-  username: root
-  password: tipmysql1!
+  <<: *default
+  database: db/production.sqlite3
